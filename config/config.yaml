@@ -1,0 +1,69 @@
+# Configuración del Proyecto de Sostenibilidad Pesquera
+# =====================================================
+
+project:
+  name: "Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera"
+  version: "0.1.0"
+  author: "Proyecto Pesquerías ML"
+
+# Configuración de datos
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  synthetic_samples: 1000
+  test_size: 0.2
+  random_state: 42
+
+# Configuración de redes bayesianas
+bayesian:
+  target_variable: "Sustainable"
+  scoring_method: "bic"  # Opciones: bic, k2, bdeu
+  max_indegree: 5
+  estimator: "mle"  # Opciones: mle, bayesian
+
+# Configuración de validación
+validation:
+  cv_splits: 5
+  bootstrap_iterations: 50
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - auc_roc
+
+# Configuración de análisis causal
+causal:
+  domain: "fisheries"  # Opciones: fisheries, ras
+  treatments:
+    - "CPUE_disc"
+    - "Fishing_Effort_hours_disc"
+  outcome: "Sustainable"
+
+# Configuración de visualización
+visualization:
+  figure_dpi: 150
+  default_figsize: [12, 8]
+  style: "seaborn-v0_8-whitegrid"
+  color_palette: "husl"
+  save_dir: "outputs/figures"
+
+# Configuración de deep learning (Fase D)
+deep_learning:
+  enabled: false  # Habilitar en Fase D
+  model_type: "bnn"  # Opciones: bnn, causal_vae
+  hidden_dims: [64, 32]
+  learning_rate: 0.001
+  epochs: 100
+  batch_size: 32
+
+# Configuración de outputs
+outputs:
+  models_dir: "outputs/models"
+  figures_dir: "outputs/figures"
+  reports_dir: "outputs/reports"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

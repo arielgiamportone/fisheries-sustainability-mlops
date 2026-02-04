@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL_Bayesian - Modelos</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>DL_Bayesian</h1>
+                <span class="subtitle">Sostenibilidad Pesquera</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/predict">Prediccion</a></li>
+                <li><a href="/models" class="active">Modelos</a></li>
+                <li><a href="/experiments">Experimentos</a></li>
+                <li><a href="/docs" target="_blank">API Docs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h2>Model Registry</h2>
+            <p>Modelos registrados en MLFlow Model Registry</p>
+        </div>
+
+        <div class="actions-bar">
+            <button id="refresh-models" class="btn btn-secondary">Actualizar</button>
+            <button id="clear-cache" class="btn btn-warning">Limpiar Cache</button>
+        </div>
+
+        <section id="models-section">
+            <div id="models-container" class="models-grid">
+                <div class="loading-spinner">Cargando modelos...</div>
+            </div>
+        </section>
+
+        <section class="cache-info">
+            <h3>Informacion del Cache</h3>
+            <div id="cache-info" class="info-box">
+                <p>Cargando...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>DL_Bayesian - Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadModelsPage();
+            loadCacheInfo();
+        });
+
+        document.getElementById('refresh-models').addEventListener('click', function() {
+            loadModelsPage();
+        });
+
+        document.getElementById('clear-cache').addEventListener('click', async function() {
+            try {
+                const response = await fetch('/api/v1/models/cache/clear', {
+                    method: 'POST'
+                });
+                if (response.ok) {
+                    alert('Cache limpiado exitosamente');
+                    loadCacheInfo();
+                }
+            } catch (error) {
+                alert('Error al limpiar cache: ' + error.message);
+            }
+        });
+
+        async function loadModelsPage() {
+            const container = document.getElementById('models-container');
+            container.innerHTML = '<div class="loading-spinner">Cargando modelos...</div>';
+
+            try {
+                const response = await fetch('/api/v1/models');
+                const models = await response.json();
+
+                if (models.length === 0) {
+                    container.innerHTML = '<p class="no-data">No hay modelos registrados</p>';
+                    return;
+                }
+
+                container.innerHTML = models.map(model => `
+                    <div class="model-card">
+                        <div class="model-header">
+                            <h3>${model.name}</h3>
+                            <span class="model-badge">${model.latest_versions?.length || 0} versiones</span>
+                        </div>
+                        <div class="model-body">
+                            ${model.description ? `<p>${model.description}</p>` : ''}
+                            <div class="versions-list">
+                                <h4>Versiones</h4>
+                                ${model.latest_versions?.map(v => `
+                                    <div class="version-item ${v.current_stage === 'Production' ? 'production' : ''}">
+                                        <span class="version-number">v${v.version}</span>
+                                        <span class="version-stage stage-${v.current_stage?.toLowerCase()}">${v.current_stage}</span>
+                                        <div class="version-actions">
+                                            ${v.current_stage !== 'Production' ? `
+                                                <button class="btn btn-small btn-success" onclick="promoteToProduction('${model.name}', '${v.version}')">
+                                                    Produccion
+                                                </button>
+                                            ` : ''}
+                                            ${v.current_stage !== 'Staging' && v.current_stage !== 'Production' ? `
+                                                <button class="btn btn-small btn-primary" onclick="promoteToStaging('${model.name}', '${v.version}')">
+                                                    Staging
+                                                </button>
+                                            ` : ''}
+                                        </div>
+                                    </div>
+                                `).join('') || '<p>Sin versiones</p>'}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                container.innerHTML = `<p class="error">Error al cargar modelos: ${error.message}</p>`;
+            }
+        }
+
+        async function loadCacheInfo() {
+            try {
+                const response = await fetch('/api/v1/models/cache/info');
+                const info = await response.json();
+                document.getElementById('cache-info').innerHTML = `
+                    <p><strong>Modelos en cache:</strong> ${info.cache_size}</p>
+                    <p><strong>Modelos:</strong> ${info.cached_models?.map(m => m.join('/')).join(', ') || 'Ninguno'}</p>
+                `;
+            } catch (error) {
+                document.getElementById('cache-info').innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function promoteToProduction(modelName, version) {
+            if (!confirm(`Promover ${modelName} v${version} a Produccion?`)) return;
+            await transitionStage(modelName, version, 'Production');
+        }
+
+        async function promoteToStaging(modelName, version) {
+            await transitionStage(modelName, version, 'Staging');
+        }
+
+        async function transitionStage(modelName, version, stage) {
+            try {
+                const response = await fetch(`/api/v1/models/${modelName}/versions/${version}/stage`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({stage: stage, archive_existing: true})
+                });
+
+                if (response.ok) {
+                    alert(`Modelo transicionado a ${stage}`);
+                    loadModelsPage();
+                    loadCacheInfo();
+                } else {
+                    const error = await response.json();
+                    alert('Error: ' + error.detail);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

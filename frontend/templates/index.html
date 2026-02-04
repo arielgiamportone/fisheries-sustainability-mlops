@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL_Bayesian - Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>DL_Bayesian</h1>
+                <span class="subtitle">Sostenibilidad Pesquera</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Dashboard</a></li>
+                <li><a href="/predict">Prediccion</a></li>
+                <li><a href="/models">Modelos</a></li>
+                <li><a href="/experiments">Experimentos</a></li>
+                <li><a href="/docs" target="_blank">API Docs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Sistema de Prediccion de Sostenibilidad</h2>
+            <p>Utilizando Deep Learning y Redes Bayesianas para evaluar la sostenibilidad de operaciones pesqueras</p>
+        </section>
+
+        <section class="status-cards">
+            <div class="card status-card">
+                <div class="card-icon">
+                    <span class="icon">&#9889;</span>
+                </div>
+                <div class="card-content">
+                    <h3>Estado del Sistema</h3>
+                    <div id="health-status" class="status-indicator loading">
+                        Verificando...
+                    </div>
+                </div>
+            </div>
+
+            <div class="card status-card">
+                <div class="card-icon">
+                    <span class="icon">&#128300;</span>
+                </div>
+                <div class="card-content">
+                    <h3>MLFlow</h3>
+                    <div id="mlflow-status" class="status-indicator loading">
+                        Verificando...
+                    </div>
+                </div>
+            </div>
+
+            <div class="card status-card">
+                <div class="card-icon">
+                    <span class="icon">&#129302;</span>
+                </div>
+                <div class="card-content">
+                    <h3>Modelo Cargado</h3>
+                    <div id="model-status" class="status-indicator loading">
+                        Verificando...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-predict">
+            <h2>Prediccion Rapida</h2>
+            <p>Ingresa los parametros principales para una evaluacion rapida</p>
+
+            <form id="quick-predict-form" class="quick-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sst_c">Temperatura (C)</label>
+                        <input type="number" id="sst_c" name="sst_c" step="0.1" value="25.0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salinity_ppt">Salinidad (ppt)</label>
+                        <input type="number" id="salinity_ppt" name="salinity_ppt" step="0.1" value="35.0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fishing_effort_hours">Esfuerzo (horas)</label>
+                        <input type="number" id="fishing_effort_hours" name="fishing_effort_hours" value="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fleet_size">Flota</label>
+                        <input type="number" id="fleet_size" name="fleet_size" value="100" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Predecir</button>
+            </form>
+
+            <div id="quick-result" class="result-container hidden">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3>Resultado</h3>
+                    </div>
+                    <div class="result-body">
+                        <div class="prediction-result">
+                            <span id="prediction-label" class="prediction-label"></span>
+                            <span id="prediction-prob" class="prediction-prob"></span>
+                        </div>
+                        <div id="uncertainty-info" class="uncertainty-info hidden">
+                            <span>Intervalo de confianza: </span>
+                            <span id="confidence-interval"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="card">
+                <h3>Modelos Disponibles</h3>
+                <ul id="models-list" class="info-list">
+                    <li class="loading">Cargando modelos...</li>
+                </ul>
+                <a href="/models" class="btn btn-secondary">Ver todos</a>
+            </div>
+
+            <div class="card">
+                <h3>Experimentos Recientes</h3>
+                <ul id="experiments-list" class="info-list">
+                    <li class="loading">Cargando experimentos...</li>
+                </ul>
+                <a href="/experiments" class="btn btn-secondary">Ver todos</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>DL_Bayesian - Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera</p>
+        <p><a href="https://github.com/arielgiamportone" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Load dashboard data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkHealth();
+            loadModels();
+            loadExperiments();
+        });
+    </script>
+</body>
+</html>

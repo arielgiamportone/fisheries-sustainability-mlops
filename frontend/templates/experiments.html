@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL_Bayesian - Experimentos</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>DL_Bayesian</h1>
+                <span class="subtitle">Sostenibilidad Pesquera</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/predict">Prediccion</a></li>
+                <li><a href="/models">Modelos</a></li>
+                <li><a href="/experiments" class="active">Experimentos</a></li>
+                <li><a href="/docs" target="_blank">API Docs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h2>Experimentos MLFlow</h2>
+            <p>Historial de experimentos y runs de entrenamiento</p>
+        </div>
+
+        <div class="actions-bar">
+            <button id="refresh-experiments" class="btn btn-secondary">Actualizar</button>
+            <a href="http://localhost:5000" target="_blank" class="btn btn-primary">Abrir MLFlow UI</a>
+        </div>
+
+        <section id="experiments-section">
+            <h3>Experimentos</h3>
+            <div id="experiments-container" class="experiments-list">
+                <div class="loading-spinner">Cargando experimentos...</div>
+            </div>
+        </section>
+
+        <section id="runs-section" class="hidden">
+            <div class="section-header">
+                <h3>Runs del Experimento: <span id="selected-experiment-name"></span></h3>
+                <button id="back-to-experiments" class="btn btn-secondary">Volver</button>
+            </div>
+            <div id="runs-container" class="runs-table-container">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>DL_Bayesian - Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        let selectedExperimentId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadExperimentsPage();
+        });
+
+        document.getElementById('refresh-experiments').addEventListener('click', function() {
+            if (selectedExperimentId) {
+                loadRuns(selectedExperimentId);
+            } else {
+                loadExperimentsPage();
+            }
+        });
+
+        document.getElementById('back-to-experiments').addEventListener('click', function() {
+            selectedExperimentId = null;
+            document.getElementById('experiments-section').classList.remove('hidden');
+            document.getElementById('runs-section').classList.add('hidden');
+        });
+
+        async function loadExperimentsPage() {
+            const container = document.getElementById('experiments-container');
+            container.innerHTML = '<div class="loading-spinner">Cargando experimentos...</div>';
+
+            try {
+                const response = await fetch('/api/v1/experiments');
+                const experiments = await response.json();
+
+                if (experiments.length === 0) {
+                    container.innerHTML = '<p class="no-data">No hay experimentos</p>';
+                    return;
+                }
+
+                container.innerHTML = experiments.map(exp => `
+                    <div class="experiment-card" onclick="selectExperiment('${exp.experiment_id}', '${exp.name}')">
+                        <div class="experiment-header">
+                            <h4>${exp.name}</h4>
+                            <span class="experiment-badge">${exp.runs_count} runs</span>
+                        </div>
+                        <div class="experiment-meta">
+                            <span>ID: ${exp.experiment_id}</span>
+                            <span class="stage-badge stage-${exp.lifecycle_stage}">${exp.lifecycle_stage}</span>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                container.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function selectExperiment(experimentId, name) {
+            selectedExperimentId = experimentId;
+            document.getElementById('selected-experiment-name').textContent = name;
+            document.getElementById('experiments-section').classList.add('hidden');
+            document.getElementById('runs-section').classList.remove('hidden');
+            await loadRuns(experimentId);
+        }
+
+        async function loadRuns(experimentId) {
+            const container = document.getElementById('runs-container');
+            container.innerHTML = '<div class="loading-spinner">Cargando runs...</div>';
+
+            try {
+                const response = await fetch(`/api/v1/experiments/${experimentId}/runs`);
+                const runs = await response.json();
+
+                if (runs.length === 0) {
+                    container.innerHTML = '<p class="no-data">No hay runs en este experimento</p>';
+                    return;
+                }
+
+                container.innerHTML = `
+                    <table class="runs-table">
+                        <thead>
+                            <tr>
+                                <th>Run Name</th>
+                                <th>Status</th>
+                                <th>Accuracy</th>
+                                <th>F1</th>
+                                <th>AUC-ROC</th>
+                                <th>Model Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${runs.map(run => `
+                                <tr class="run-row" onclick="showRunDetails('${run.run_id}')">
+                                    <td>${run.run_name || run.run_id.substring(0, 8)}</td>
+                                    <td><span class="status-badge status-${run.status?.toLowerCase()}">${run.status}</span></td>
+                                    <td>${run.metrics?.final_accuracy?.toFixed(4) || run.metrics?.accuracy?.toFixed(4) || '-'}</td>
+                                    <td>${run.metrics?.final_f1?.toFixed(4) || run.metrics?.f1?.toFixed(4) || '-'}</td>
+                                    <td>${run.metrics?.final_auc_roc?.toFixed(4) || run.metrics?.auc_roc?.toFixed(4) || '-'}</td>
+                                    <td>${run.params?.model_type || '-'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+            } catch (error) {
+                container.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function showRunDetails(runId) {
+            try {
+                const response = await fetch(`/api/v1/runs/${runId}`);
+                const run = await response.json();
+
+                alert(`Run ID: ${runId}\n\nMetrics:\n${JSON.stringify(run.metrics, null, 2)}\n\nParams:\n${JSON.stringify(run.params, null, 2)}`);
+            } catch (error) {
+                alert('Error loading run details: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

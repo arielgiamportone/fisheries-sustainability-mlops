@@ -1,0 +1,78 @@
+# MLFlow Configuration for DL_Bayesian Project
+# ============================================
+
+# Tracking Server
+tracking:
+  uri: "http://localhost:5000"  # Local development
+  # uri: "http://mlflow-server:5000"  # Docker/Production
+
+# Default Experiment
+experiment:
+  name: "dl_bayesian_sustainability"
+  description: "Deep Learning and Bayesian Networks for Fisheries Sustainability"
+
+# Model Registry
+registry:
+  # Default model names for different model types
+  models:
+    bnn: "sustainability_bnn"
+    mlp: "sustainability_mlp"
+    causal_vae: "sustainability_causal_vae"
+
+  # Stage transitions
+  stages:
+    - None
+    - Staging
+    - Production
+    - Archived
+
+# Artifact Storage
+artifacts:
+  # Local storage (development)
+  local_path: "mlruns/artifacts"
+
+  # S3 storage (production)
+  # s3_bucket: "dl-bayesian-mlflow-artifacts"
+  # s3_prefix: "artifacts"
+
+# Logging Configuration
+logging:
+  # What to log automatically
+  log_models: true
+  log_metrics: true
+  log_params: true
+  log_artifacts: true
+
+  # Metrics to track
+  tracked_metrics:
+    - train_loss
+    - val_loss
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - auc_roc
+
+  # Parameters to log
+  tracked_params:
+    - model_type
+    - input_dim
+    - hidden_dims
+    - dropout_rate
+    - learning_rate
+    - batch_size
+    - epochs
+    - early_stopping_patience
+
+# Autolog Settings (optional)
+autolog:
+  enabled: false  # Set to true to use MLFlow autolog
+  log_models: true
+  log_input_examples: true
+  log_model_signatures: true
+
+# Tags
+default_tags:
+  project: "dl_bayesian"
+  domain: "fisheries_sustainability"
+  framework: "pytorch"

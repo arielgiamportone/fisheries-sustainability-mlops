@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL_Bayesian - Prediccion</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>DL_Bayesian</h1>
+                <span class="subtitle">Sostenibilidad Pesquera</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/predict" class="active">Prediccion</a></li>
+                <li><a href="/models">Modelos</a></li>
+                <li><a href="/experiments">Experimentos</a></li>
+                <li><a href="/docs" target="_blank">API Docs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Prediccion de Sostenibilidad</h2>
+        <p>Complete el formulario con los datos de la operacion pesquera para obtener una prediccion de sostenibilidad.</p>
+
+        <div class="predict-layout">
+            <form id="predict-form" class="predict-form">
+                <fieldset>
+                    <legend>Variables Ambientales</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="sst_c">Temperatura Superficial (C)</label>
+                            <input type="number" id="sst_c" name="sst_c" step="0.1" min="-5" max="40" value="25.0" required>
+                            <small>Rango: -5 a 40 C</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="salinity_ppt">Salinidad (ppt)</label>
+                            <input type="number" id="salinity_ppt" name="salinity_ppt" step="0.1" min="20" max="45" value="35.0" required>
+                            <small>Rango: 20 a 45 ppt</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="chlorophyll_mg_m3">Clorofila (mg/m3)</label>
+                            <input type="number" id="chlorophyll_mg_m3" name="chlorophyll_mg_m3" step="0.1" min="0" max="100" value="2.5" required>
+                            <small>Rango: 0 a 100 mg/m3</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="ph">pH</label>
+                            <input type="number" id="ph" name="ph" step="0.01" min="6" max="9" value="8.1" required>
+                            <small>Rango: 6 a 9</small>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Variables Operativas</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fleet_size">Tamano de Flota</label>
+                            <input type="number" id="fleet_size" name="fleet_size" min="1" max="50000" value="150" required>
+                            <small>Numero de embarcaciones</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="fishing_effort_hours">Esfuerzo Pesquero (horas)</label>
+                            <input type="number" id="fishing_effort_hours" name="fishing_effort_hours" min="0" value="1200" required>
+                            <small>Total horas de pesca</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuel_consumption_l">Consumo de Combustible (L)</label>
+                            <input type="number" id="fuel_consumption_l" name="fuel_consumption_l" min="0" value="5000" required>
+                            <small>Litros totales</small>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Variables Economicas</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fish_price_usd_ton">Precio del Pescado (USD/ton)</label>
+                            <input type="number" id="fish_price_usd_ton" name="fish_price_usd_ton" min="0" value="2500" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fuel_price_usd_l">Precio del Combustible (USD/L)</label>
+                            <input type="number" id="fuel_price_usd_l" name="fuel_price_usd_l" step="0.01" min="0" value="1.2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="operating_cost_usd">Costo Operativo (USD)</label>
+                            <input type="number" id="operating_cost_usd" name="operating_cost_usd" min="0" value="15000" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Configuracion del Modelo</legend>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="model_name">Modelo</label>
+                            <select id="model_name" name="model_name">
+                                <option value="sustainability_bnn_api" selected>BNN API (10 features)</option>
+                                <option value="sustainability_bnn">BNN Original (17 features)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="model_version">Version</label>
+                            <select id="model_version" name="model_version">
+                                <option value="Production">Produccion</option>
+                                <option value="Staging">Staging</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">Realizar Prediccion</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar</button>
+                </div>
+            </form>
+
+            <div id="result-panel" class="result-panel hidden">
+                <div class="result-card large">
+                    <div class="result-header">
+                        <h3>Resultado de la Prediccion</h3>
+                    </div>
+                    <div class="result-body">
+                        <div id="prediction-display" class="prediction-display">
+                            <div class="prediction-icon" id="prediction-icon"></div>
+                            <div class="prediction-text">
+                                <span id="prediction-label" class="prediction-label-large"></span>
+                                <span id="prediction-description"></span>
+                            </div>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <span class="metric-label">Probabilidad</span>
+                                <span id="probability-value" class="metric-value"></span>
+                            </div>
+                            <div class="metric" id="uncertainty-metric">
+                                <span class="metric-label">Incertidumbre</span>
+                                <span id="uncertainty-value" class="metric-value"></span>
+                            </div>
+                            <div class="metric" id="ci-metric">
+                                <span class="metric-label">Intervalo 95%</span>
+                                <span id="ci-value" class="metric-value"></span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Tiempo</span>
+                                <span id="inference-time" class="metric-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="model-info">
+                            <small>Modelo: <span id="model-used"></span> | Version: <span id="version-used"></span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>DL_Bayesian - Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        document.getElementById('predict-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Convert to numbers
+            for (let key in data) {
+                if (key !== 'model_name' && key !== 'model_version') {
+                    data[key] = parseFloat(data[key]);
+                }
+            }
+
+            await makePrediction(data, 'result-panel');
+        });
+    </script>
+</body>
+</html>
