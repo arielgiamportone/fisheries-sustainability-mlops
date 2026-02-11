@@ -1,9 +1,10 @@
-# DL_Bayesian: Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera
+# 🐟📊 DL_Bayesian: Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green.svg)](https://fastapi.tiangolo.com)
-[![MLFlow](https://img.shields.io/badge/MLFlow-2.9-orange.svg)](https://mlflow.org)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-2C5F7C)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11-40916C)](https://python.org)
+[![Status](https://img.shields.io/badge/Status-Active-D4A017)](https://github.com/arielgiamportone/DL_Bayesian)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104-059669)](https://fastapi.tiangolo.com)
+[![MLFlow](https://img.shields.io/badge/MLFlow-2.9-3B82F6)](https://mlflow.org)
 
 Sistema completo de Machine Learning para predecir la sostenibilidad de operaciones pesqueras utilizando **Redes Bayesianas**, **Deep Learning** y un stack **MLOps** completo.
 
@@ -835,12 +836,25 @@ Este proyecto esta bajo licencia MIT.
 
 ---
 
-## Contacto
+## Contacto y Atribución
 
-- **Autor:** Ariel Giamportone
-- **GitHub:** [@arielgiamportone](https://github.com/arielgiamportone)
-- **Comunidad:** [PesquerosEnIA](https://github.com/PesquerosEnIA)
+<p align="center">
+  <strong>Un proyecto de Pesqueros en IA 🐟</strong><br>
+  Investigación y desarrollo por Ariel Luján Giamportone 📊
+</p>
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/agiamportone/">LinkedIn</a> •
+  <a href="https://github.com/arielgiamportone">GitHub</a> •
+  <a href="https://www.researchgate.net/profile/Ariel-Lujan-Giamportone">ResearchGate</a> •
+  <a href="https://orcid.org/0009-0000-1607-9743">ORCID</a>
+</p>
+
+| | |
+|---|---|
+| 📊 **Investigación (I+D+i)** | **Ing. Ariel Luján Giamportone** — [LinkedIn](https://www.linkedin.com/in/agiamportone/) · [ORCID](https://orcid.org/0009-0000-1607-9743) · [ResearchGate](https://www.researchgate.net/profile/Ariel-Lujan-Giamportone) |
+| 🐟 **Comunidad y Educación** | **Pesqueros en IA** — [LinkedIn](https://www.linkedin.com/company/110746012/) · [GitHub](https://github.com/PesquerosEnIA) |
 
 ---
 
-*Ultima actualizacion: Febrero 2026*
+*Última actualización: Febrero 2026*

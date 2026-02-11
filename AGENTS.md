@@ -981,5 +981,433 @@ Para preguntas o sugerencias, abrir un issue en el repositorio.
 
 ---
 
+## Identidad de Marca — Proyecto Dual
+
+Este proyecto opera bajo **dos marcas diferenciadas** que reflejan sus dos caras:
+
+### 🔬 I+D+i — Marca Personal (Ariel Luján Giamportone)
+
+La componente de investigación, desarrollo e innovación del proyecto.
+
+```yaml
+brand: "Ariel Luján Giamportone"
+brand_file: "BRAND_ARIEL_GIAMPORTONE.md"  # En el repo brand-system
+type: "Personal Profesional"
+tagline:
+  es: "Ingeniero Pesquero | Data Science & IA para Desarrollo Sostenible"
+  en: "Fisheries Engineer | Data Science & AI for Sustainable Development"
+```
+
+#### Cuándo aplicar esta marca
+
+- Publicaciones científicas derivadas de este proyecto
+- Repositorio en `github.com/arielgiamportone`
+- Papers, preprints, comunicaciones en congresos
+- LinkedIn personal, ResearchGate, ORCID
+- Portfolio profesional, CV, aplicaciones laborales
+- Documentación técnica avanzada del sistema
+
+#### Paleta de colores
+
+| Rol | Color | Hex | Uso |
+|-----|-------|-----|-----|
+| Primario | Ocean Deep Blue | `#2C5F7C` | Encabezados, CTAs, links |
+| Secundario | Sustainable Green | `#40916C` | Éxito, sostenibilidad, badges |
+| Acento | Tech Gold | `#D4A017` | Highlights, iconos IA, datos |
+| Neutro | Stone Gray | `#737373` | Texto secundario, bordes |
+
+#### Tipografía
+
+| Contexto | Familia | Pesos |
+|----------|---------|-------|
+| Display/Títulos | Inter | 700, 800 |
+| Cuerpo | Inter | 400, 500 |
+| Código | JetBrains Mono | 400, 500 |
+| Académico | Source Serif Pro | 400, 600 |
+
+#### Tono y voz
+
+- **Técnico pero accesible**: Explica conceptos complejos de forma clara
+- **Orientado a soluciones**: Enfocado en valor práctico y resultados
+- **Innovador prudente**: Nuevas tecnologías con base científica
+
+#### Datos de contacto y atribución
+
+```yaml
+author: "Ariel Luján Giamportone"
+title: "Ing. Pesquero"
+affiliation: "UTN-FRTDF"
+orcid: "0009-0000-1607-9743"
+linkedin: "https://www.linkedin.com/in/agiamportone/"
+github: "https://github.com/arielgiamportone"
+researchgate: "https://www.researchgate.net/profile/Ariel-Lujan-Giamportone"
+email: "giamprtone1@gmail.com"
+location: "Europe Based (Spain)"
+```
+
+#### Citar este proyecto (formato académico)
+
+```
+Giamportone, A. L. (2026). Deep Learning y Redes Bayesianas para Sostenibilidad 
+Pesquera: Un enfoque de análisis causal. GitHub Repository. 
+https://github.com/arielgiamportone/DL_Bayesian
+```
+
+#### Hashtags y keywords (I+D+i)
+
+```yaml
+signature: ["#DataScience", "#FisheriesEngineer"]
+primary: ["#MachineLearning", "#BayesianNetworks", "#DeepLearning", "#CausalInference"]
+secondary: ["#Python", "#AI", "#Sustainability", "#SDG"]
+academic: ["#OpenScience", "#ReproducibleResearch"]
+```
+
+---
+
+### 🐟 Divulgación — Marca Organizacional (Pesqueros en IA)
+
+La componente educativa y de divulgación del proyecto.
+
+```yaml
+brand: "Pesqueros en IA"
+brand_file: "BRAND_PESQUEROS_EN_IA.md"  # En el repo brand-system
+type: "Organización Educativa"
+tagline:
+  es: "Inteligencia Artificial para el Mar del Mañana"
+  en: "Artificial Intelligence for Tomorrow's Seas"
+mission: >
+  Democratizar el acceso al conocimiento de IA y Ciencia de Datos para 
+  profesionales del sector pesquero y acuícola, capacitando a la comunidad 
+  hispanohablante.
+```
+
+#### Cuándo aplicar esta marca
+
+- Tutoriales y notebooks educativos derivados del proyecto
+- Publicaciones en la página de LinkedIn de Pesqueros en IA
+- Repositorio en `github.com/PesquerosEnIA`
+- Contenido didáctico para el sector pesquero
+- Cursos, talleres, webinars basados en este proyecto
+- Materiales para eventos del sector (CONIPE, etc.)
+
+#### Paleta de colores
+
+| Rol | Color | Hex | Uso |
+|-----|-------|-----|-----|
+| Primario | Marine Teal | `#059669` | Logo, CTAs, links |
+| Secundario | Deep Ocean | `#3B82F6` | Headers, elementos técnicos |
+| Acento | Coral Warm | `#F97316` | Highlights, alertas, comunidad |
+| Neutro | Sand | `#78716C` | Texto secundario, fondos |
+
+#### Tipografía
+
+| Contexto | Familia | Pesos |
+|----------|---------|-------|
+| Display/Logo | Poppins | 600, 700 |
+| Títulos | Inter | 500, 600, 700 |
+| Cuerpo | Inter | 400, 500 |
+| Código | Fira Code | 400, 500 (con ligaduras) |
+
+#### Tono y voz
+
+- **Didáctico y accesible**: Compañero de aprendizaje, sin condescendencia
+- **Práctico y aplicado**: Todo concepto tiene un caso de uso real en el sector
+- **Inclusivo**: Cualquier nivel de experiencia técnica es bienvenido
+- **Español primario**: Orgullo de crear contenido en español
+
+#### Vocabulario preferido
+
+| Inglés | Español (preferido) |
+|--------|---------------------|
+| Machine Learning | Aprendizaje Automático (ML) |
+| Deep Learning | Aprendizaje Profundo |
+| Dataset | Conjunto de datos |
+| Training | Entrenamiento (de modelos) |
+| Deploy | Implementar/Desplegar |
+| Pipeline | Flujo de procesamiento |
+
+#### Datos de contacto y atribución
+
+```yaml
+organization: "Pesqueros en IA"
+founder: "Ariel Luján Giamportone"
+linkedin_company: "https://www.linkedin.com/company/110746012/"
+github: "https://github.com/PesquerosEnIA"
+```
+
+#### Hashtags y keywords (Divulgación)
+
+```yaml
+signature: ["#PesquerosEnIA", "#InteligenciaArtificial"]
+primary: ["#PescaSostenible", "#DataScience", "#BlueEconomy", "#MachineLearning"]
+sector: ["#IngenieríaPesquera", "#Acuicultura", "#RecursosMarinos", "#Oceanografía"]
+```
+
+---
+
+### 🔀 Árbol de Decisión: ¿Qué Marca Usar?
+
+```yaml
+decision_tree:
+  question: "¿Qué marca debo aplicar en este contexto?"
+  
+  if_research_technical:
+    brand: "Ariel Luján Giamportone"
+    colors: "Ocean Deep Blue (#2C5F7C)"
+    triggers:
+      - "Paper o publicación científica"
+      - "Código fuente del core del proyecto (src/)"
+      - "Documentación técnica avanzada (AGENTS.md, TECHNICAL_DOCS.md)"
+      - "GitHub personal (arielgiamportone)"
+      - "ResearchGate, ORCID"
+      - "CV, portfolio profesional"
+    template: |
+      **Autor:** Ing. Ariel Luján Giamportone
+      **ORCID:** 0009-0000-1607-9743
+      **Afiliación:** UTN-FRTDF
+  
+  if_educational_outreach:
+    brand: "Pesqueros en IA"
+    colors: "Marine Teal (#059669)"
+    triggers:
+      - "Notebooks tutoriales"
+      - "README de nivel introductorio"
+      - "Posts en LinkedIn de la comunidad"
+      - "Cursos y talleres"
+      - "GitHub organizacional (PesquerosEnIA)"
+      - "Videos y webinars"
+    template: |
+      Hecho con 🐟 por la comunidad Pesqueros en IA
+      Desarrollado por Ariel Luján Giamportone
+  
+  if_dual_context:
+    note: "Este proyecto ES un caso dual por naturaleza"
+    format: |
+      Un proyecto de **Pesqueros en IA** 🐟
+      Investigación y desarrollo por **Ariel Luján Giamportone** 📊
+    use_cases:
+      - "README principal del repositorio"
+      - "Presentaciones en conferencias"
+      - "Publicaciones que benefician ambas audiencias"
+    attribution: |
+      📊 **Investigación:** Ariel Luján Giamportone
+         linkedin.com/in/agiamportone | ORCID: 0009-0000-1607-9743
+      🐟 **Comunidad:** Pesqueros en IA
+         linkedin.com/company/110746012 | github.com/PesquerosEnIA
+```
+
+---
+
+### 📄 Templates de Marca para Este Proyecto
+
+#### Template: README (Dual Attribution)
+
+```markdown
+# [Emoji] Nombre del Proyecto
+
+> Descripción corta (máx 120 caracteres)
+
+![License](https://img.shields.io/badge/License-MIT-2C5F7C)
+![Python](https://img.shields.io/badge/Python-3.11-40916C)
+![Status](https://img.shields.io/badge/Status-Active-D4A017)
+
+## 🎯 Objetivo
+[Descripción]
+
+## ✨ Características
+- 📊 [Característica 1]
+- 🧠 [Característica 2]
+- 🐟 [Característica 3]
+
+[... contenido ...]
+
+---
+
+<p align="center">
+  <strong>Un proyecto de Pesqueros en IA 🐟</strong><br>
+  Investigación y desarrollo por Ariel Luján Giamportone 📊
+</p>
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/agiamportone/">LinkedIn</a> •
+  <a href="https://github.com/arielgiamportone">GitHub</a> •
+  <a href="https://www.researchgate.net/profile/Ariel-Lujan-Giamportone">ResearchGate</a> •
+  <a href="https://orcid.org/0009-0000-1607-9743">ORCID</a>
+</p>
+```
+
+#### Template: Notebook Educativo (Marca Pesqueros)
+
+```markdown
+# 📚 [Título del Tutorial]
+
+> 🐟 **Pesqueros en IA** — Inteligencia Artificial para el Mar del Mañana
+
+**Nivel:** 🟢 Principiante / 🟡 Intermedio / 🔴 Avanzado
+**Autor:** Ariel Luján Giamportone
+**Última actualización:** [Fecha]
+
+## 🎯 Objetivo de aprendizaje
+Al finalizar, serás capaz de:
+- [Objetivo 1]
+- [Objetivo 2]
+
+## 🐟 Aplicación al sector pesquero
+[Explicar conexión con el sector]
+
+[... contenido del notebook ...]
+
+---
+Hecho con 🐟 por la comunidad **Pesqueros en IA**
+Desarrollado por **Ariel Luján Giamportone** | [LinkedIn](https://linkedin.com/in/agiamportone)
+```
+
+#### Template: Paper/Publicación Científica (Marca Personal)
+
+```markdown
+# [Título del Trabajo]
+
+**Autor:** Ing. Ariel Luján Giamportone
+**Afiliación:** Universidad Tecnológica Nacional - Facultad Regional Tierra del Fuego
+**ORCID:** [0009-0000-1607-9743](https://orcid.org/0009-0000-1607-9743)
+**Email:** giamprtone1@gmail.com
+**Área:** Ingeniería Pesquera / Data Science / Machine Learning
+
+## Resumen
+[150-250 palabras]
+
+**Palabras clave:** Redes Bayesianas, Deep Learning, Sostenibilidad Pesquera, 
+Análisis Causal, Inteligencia Artificial
+
+## Abstract
+[English version]
+
+**Keywords:** Bayesian Networks, Deep Learning, Fisheries Sustainability, 
+Causal Analysis, Artificial Intelligence
+
+## Cómo citar
+Giamportone, A. L. (YYYY). [Título]. DOI/URL
+```
+
+---
+
+### 🎨 Aplicación de Marca a Componentes del Proyecto
+
+| Componente | Marca Principal | Justificación |
+|------------|-----------------|---------------|
+| `src/bayesian/` | 📊 Ariel (I+D+i) | Código fuente de investigación |
+| `src/causal/` | 📊 Ariel (I+D+i) | Análisis causal avanzado |
+| `src/deep_learning/` | 📊 Ariel (I+D+i) | Modelos de deep learning |
+| `src/api/` | 📊 Ariel (I+D+i) | Infraestructura técnica |
+| `notebooks/01_EDA_*.ipynb` | 🐟 Pesqueros (Educación) | Tutorial exploratorio |
+| `notebooks/04_DL_*.ipynb` | 🔀 Dual | Tutorial técnico avanzado |
+| `BayesianNetworks_*.ipynb` | 🔀 Dual | Tutorial + Investigación |
+| `CausalNetwork_*.ipynb` | 🔀 Dual | Tutorial + Investigación |
+| `README.md` | 🔀 Dual | Puerta de entrada al proyecto |
+| `AGENTS.md` | 📊 Ariel (I+D+i) | Documentación técnica |
+| `tests/` | 📊 Ariel (I+D+i) | Código de calidad |
+| `bibliography/` | 📊 Ariel (I+D+i) | Material académico |
+| `frontend/` | 🐟 Pesqueros (Educación) | Interfaz accesible |
+| `docs/USER_MANUAL.md` | 🐟 Pesqueros (Educación) | Manual de usuario |
+
+---
+
+### ✅ Checklist de Validación de Marca
+
+#### Para contenido I+D+i (Ariel)
+- [ ] ¿Usa colores Ocean Blue `#2C5F7C` / Green `#40916C` / Gold `#D4A017`?
+- [ ] ¿Tono técnico pero accesible?
+- [ ] ¿Incluye ORCID y links a LinkedIn/GitHub/ResearchGate personales?
+- [ ] ¿Tipografía Inter o Source Serif Pro para académico?
+- [ ] ¿Keywords de investigación incluidas?
+
+#### Para contenido educativo (Pesqueros en IA)
+- [ ] ¿Usa colores Marine Teal `#059669` / Deep Ocean `#3B82F6` / Coral `#F97316`?
+- [ ] ¿Tono didáctico y accesible?
+- [ ] ¿Incluye #PesquerosEnIA?
+- [ ] ¿Aplicación clara al sector pesquero?
+- [ ] ¿Menciona la comunidad hispanohablante?
+- [ ] ¿Vocabulario en español preferido?
+
+#### Para contenido dual
+- [ ] ¿Atribución clara a ambas marcas?
+- [ ] ¿Cross-linking apropiado entre plataformas?
+- [ ] ¿Se usa la paleta de la marca principal del contexto?
+
+---
+
+### 🤖 Instrucciones para Agentes de IA
+
+```yaml
+processing_order:
+  1: "Leer esta sección de Identidad de Marca"
+  2: "Determinar qué marca aplica según el componente/archivo"
+  3: "Aplicar colores, tono y template correspondiente"
+  4: "Validar con checklist antes de producir output"
+
+memory_hints:
+  essential:
+    - "Proyecto dual: I+D+i (Ariel) + Educación (Pesqueros en IA)"
+    - "Ariel = Ocean Blue #2C5F7C, técnico-profesional"
+    - "Pesqueros = Marine Teal #059669, didáctico-accesible"
+    - "README y notebooks principales son DUAL"
+    - "src/ y tests/ son marca Ariel (I+D+i)"
+    - "Tutoriales y frontend son marca Pesqueros"
+  
+  brand_system_repo: "ArielyPesquerosenIABrandingSys"
+  brand_files:
+    entry_point: "brand-system/AGENTS.md"
+    personal: "brand-system/BRAND_ARIEL_GIAMPORTONE.md"
+    org: "brand-system/BRAND_PESQUEROS_EN_IA.md"
+    assets: "brand-system/ASSETS_GUIDE.md"
+
+fallbacks:
+  if_unclear: "Preguntar: ¿Es I+D+i o divulgación?"
+  if_dual: "Usar atribución dual con marca Pesqueros como principal visual"
+  if_conflict: "Priorizar la marca del público objetivo del contenido"
+```
+
+---
+
+### 📎 Referencia Rápida Visual
+
+```
+┌───────────────────────────────────────────────────────────────┐
+│                    DL_Bayesian Project                        │
+│                                                               │
+│  ┌─────────────────────┐    ┌──────────────────────────────┐  │
+│  │  📊 I+D+i (Ariel)   │    │  🐟 Educación (Pesqueros)   │  │
+│  │                     │    │                              │  │
+│  │  Ocean Blue #2C5F7C │    │  Marine Teal #059669         │  │
+│  │  Inter / JetBrains  │    │  Poppins / Fira Code         │  │
+│  │  Técnico-Profesional│    │  Didáctico-Accesible         │  │
+│  │                     │    │                              │  │
+│  │  • src/             │    │  • notebooks/ (tutoriales)   │  │
+│  │  • tests/           │    │  • frontend/                 │  │
+│  │  • bibliography/    │    │  • docs/USER_MANUAL.md       │  │
+│  │  • AGENTS.md        │    │  • Posts LinkedIn comunidad  │  │
+│  │  • Papers           │    │  • Cursos y talleres         │  │
+│  └─────────┬───────────┘    └──────────────┬───────────────┘  │
+│            │                               │                  │
+│            └───────────┬───────────────────┘                  │
+│                        │                                      │
+│               ┌────────┴────────┐                             │
+│               │  🔀 Dual Brand  │                             │
+│               │                 │                             │
+│               │  README.md      │                             │
+│               │  Main Notebooks │                             │
+│               │  Presentaciones │                             │
+│               │  Conferencias   │                             │
+│               └─────────────────┘                             │
+│                                                               │
+│  Maintainer: Ariel Luján Giamportone                         │
+│  Email: giamprtone1@gmail.com                                │
+│  Sistema de marca: brand-system/AGENTS.md                    │
+└───────────────────────────────────────────────────────────────┘
+```
+
+---
+
 *Documentación generada para el proyecto Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera.*
-*Última actualización: 2026-01-28*
+*Sistema de marca unificado v1.0.0 — Integración de identidad dual I+D+i / Divulgación.*
+*Última actualización: 2026-02-10*
