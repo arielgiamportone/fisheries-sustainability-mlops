@@ -1,0 +1,74 @@
+# Docker Compose for DL_Bayesian Development Environment
+# ======================================================
+#
+# Usage:
+#   docker-compose -f docker/docker-compose.yml up -d
+#   docker-compose -f docker/docker-compose.yml down
+#   docker-compose -f docker/docker-compose.yml logs -f
+
+version: '3.8'
+
+services:
+  # MLFlow Tracking Server
+  mlflow:
+    build:
+      context: ./mlflow
+      dockerfile: Dockerfile
+    container_name: dl_bayesian_mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow_data:/mlflow/db
+      - mlflow_artifacts:/mlflow/artifacts
+    environment:
+      - MLFLOW_TRACKING_URI=http://localhost:5000
+    networks:
+      - dl_bayesian_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # FastAPI Application
+  api:
+    build:
+      context: ..
+      dockerfile: docker/api/Dockerfile
+    container_name: dl_bayesian_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../outputs:/app/outputs
+      - model_cache:/app/model_cache
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - MODEL_REGISTRY_NAME=sustainability_bnn
+      - LOG_LEVEL=INFO
+      - PYTHONPATH=/app
+    depends_on:
+      mlflow:
+        condition: service_healthy
+    networks:
+      - dl_bayesian_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mlflow_data:
+    driver: local
+  mlflow_artifacts:
+    driver: local
+  model_cache:
+    driver: local
+
+networks:
+  dl_bayesian_network:
+    driver: bridge
