@@ -1,9 +1,10 @@
-# Manual de Usuario - DL_Bayesian
+# Manual de Usuario — Fisheries Sustainability MLOps
 
-## Sistema de Prediccion de Sostenibilidad Pesquera
+## Sistema de Predicción de Sostenibilidad Pesquera
 
-**Version:** 1.0.0
-**Fecha:** Febrero 2025
+**Versión:** 1.0.0  
+**Fecha:** Febrero 2026  
+**Autor:** Ing. Ariel Luján Giamportone
 
 ---
 
@@ -26,9 +27,9 @@
 
 ## 1. Introduccion
 
-### Que es DL_Bayesian?
+### Qué es Fisheries Sustainability MLOps?
 
-DL_Bayesian es un sistema de Machine Learning que predice la sostenibilidad de operaciones pesqueras. Utiliza:
+Este sistema de Machine Learning predice la sostenibilidad de operaciones pesqueras. Utiliza:
 
 - **Redes Neuronales Bayesianas (BNN)**: Proporcionan predicciones con nivel de confianza
 - **Redes Bayesianas**: Para analisis causal de factores
@@ -95,12 +96,12 @@ El sistema permite:
 
 **Opcion A: Con Git**
 ```bash
-git clone https://github.com/arielgiamportone/DL_Bayesian.git
-cd DL_Bayesian
+git clone https://github.com/arielgiamportone/fisheries-sustainability-mlops.git
+cd fisheries-sustainability-mlops
 ```
 
 **Opcion B: Descarga directa**
-1. Ir a https://github.com/arielgiamportone/DL_Bayesian
+1. Ir a https://github.com/arielgiamportone/fisheries-sustainability-mlops
 2. Click en "Code" > "Download ZIP"
 3. Extraer el archivo
 4. Abrir terminal en la carpeta extraida
@@ -144,7 +145,7 @@ mlflow server --host 127.0.0.1 --port 5000
 
 **Terminal 2 - Iniciar API:**
 ```bash
-cd DL_Bayesian
+cd fisheries-sustainability-mlops
 python -m uvicorn src.api.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
@@ -171,7 +172,7 @@ Al acceder a http://127.0.0.1:8000 vera el dashboard principal:
 
 ```
 +------------------------------------------------------------------+
-|  DL_Bayesian - Sostenibilidad Pesquera                           |
+|  Fisheries Sustainability MLOps - Sostenibilidad Pesquera       |
 +------------------------------------------------------------------+
 |                                                                   |
 |  [Dashboard]  [Prediccion]  [Modelos]  [Experimentos]            |
@@ -568,7 +569,7 @@ fetch('http://127.0.0.1:8000/api/v1/predict', {
 **Solucion:**
 ```bash
 # Asegurar que esta en el directorio correcto
-cd DL_Bayesian
+cd fisheries-sustainability-mlops
 
 # Verificar entorno virtual activo
 # Windows
@@ -728,8 +729,9 @@ R: Para produccion, agregue autenticacion (API keys), HTTPS, y use un balanceado
 
 ## Contacto y Soporte
 
-- **Repositorio:** https://github.com/arielgiamportone/DL_Bayesian
-- **Issues:** https://github.com/arielgiamportone/DL_Bayesian/issues
+- **Repositorio:** https://github.com/arielgiamportone/fisheries-sustainability-mlops
+- **Issues:** https://github.com/arielgiamportone/fisheries-sustainability-mlops/issues
+- **Autor:** Ing. Ariel Luján Giamportone — [LinkedIn](https://www.linkedin.com/in/agiamportone/) · [ORCID](https://orcid.org/0009-0000-1607-9743)
 - **Comunidad:** https://github.com/PesquerosEnIA
 
 ---
@@ -783,4 +785,4 @@ curl http://127.0.0.1:8000/health
 
 ---
 
-*Manual de Usuario - DL_Bayesian v1.0.0*
+*Manual de Usuario — Fisheries Sustainability MLOps v1.0.0*

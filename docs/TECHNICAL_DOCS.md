@@ -1,10 +1,12 @@
-# Documentación Técnica - DL_Bayesian
+# Documentación Técnica — Fisheries Sustainability MLOps
 
 ## Sistema MLOps para Sostenibilidad Pesquera con Deep Learning y Redes Bayesianas
 
-**Versión:** 1.0.0
-**Última actualización:** Febrero 2025
-**Autor:** Ariel Giamportone
+**Versión:** 1.0.0  
+**Última actualización:** Febrero 2026  
+**Autor:** Ing. Ariel Luján Giamportone  
+**ORCID:** [0009-0000-1607-9743](https://orcid.org/0009-0000-1607-9743)  
+**Repositorio:** [github.com/arielgiamportone/fisheries-sustainability-mlops](https://github.com/arielgiamportone/fisheries-sustainability-mlops)
 
 ---
 
@@ -2083,4 +2085,9 @@ pytest tests/ -v -m "not integration"
 
 ---
 
-*Documentación generada para el proyecto DL_Bayesian*
+---
+
+**Autor:** Ing. Ariel Luján Giamportone  
+**ORCID:** [0009-0000-1607-9743](https://orcid.org/0009-0000-1607-9743) · [LinkedIn](https://www.linkedin.com/in/agiamportone/) · [ResearchGate](https://www.researchgate.net/profile/Ariel-Lujan-Giamportone)
+
+*Documentación técnica del proyecto Fisheries Sustainability MLOps*

@@ -311,6 +311,14 @@ El módulo de análisis causal implementa do-calculus para responder preguntas c
 
 Esta capacidad permite evaluar escenarios de manejo antes de implementarlos, simulando efectos de cambios en TAC, modificaciones a la talla mínima, o restricciones temporales adicionales.
 
+\subsection{Limitaciones y naturaleza de los datos}
+
+Es fundamental explicitar que el proyecto \software{DL\_Bayesian}, en su estado actual, constituye una \textbf{prueba de concepto metodológica basada íntegramente en datos sintéticos} generados algorítmicamente. Las variables ambientales (temperatura superficial del mar, salinidad, clorofila-\textit{a}), operativas (esfuerzo pesquero, CPUE, tamaño de flota) y económicas (costos operativos, precios de mercado, márgenes) fueron simuladas mediante distribuciones estadísticas cuyos rangos y correlaciones se calibraron a partir de valores reportados en la literatura para pesquerías de crustáceos patagónicos \citep{Lovrich1999, Canales2020}.
+
+Las relaciones causales modeladas en el sistema---incluyendo la estructura de los grafos acíclicos dirigidos (DAGs) y las distribuciones de probabilidad condicional---son \textbf{simuladas a partir de conocimiento experto del dominio} y no derivadas empíricamente de observaciones de campo. Si bien esta aproximación permite demostrar la viabilidad técnica de la arquitectura propuesta y validar el flujo completo del sistema (desde la ingesta de datos hasta la inferencia causal y el despliegue vía API), los resultados numéricos específicos no deben interpretarse como estimaciones reales del estado del stock o de la sostenibilidad de la pesquería.
+
+La validación con datos reales de la pesquería de centolla, provenientes de campañas de investigación del INIDEP, registros históricos del CADIC en Canal Beagle, y datos operativos del sistema SIFIPA, constituye el objetivo central de la \textbf{Fase 1 de la agenda de I+D+i propuesta (2026--2027)}. Esta fase requerirá, además, la calibración de los priors bayesianos contra series temporales observadas y la evaluación de la capacidad predictiva del sistema frente a los modelos de evaluación de stock tradicionales actualmente en uso.
+
 % ----------------------------------------------------------------------------
 % 5. BRECHA TECNOLÓGICA
 % ----------------------------------------------------------------------------
@@ -412,13 +420,13 @@ El autor agradece a los colegas del Laboratorio de Crustáceos del CADIC-CONICET
 
 \section*{Material Suplementario}
 
-El código fuente del proyecto \software{DL\_Bayesian} está disponible como repositorio de código abierto:
+El código fuente del proyecto está disponible como repositorio de código abierto:
 
 \begin{center}
-\url{https://github.com/alujan/DL_Bayesian}
+\url{https://github.com/arielgiamportone/fisheries-sustainability-mlops}
 \end{center}
 
-El repositorio incluye notebooks demostrativos, documentación técnica completa, y datos de ejemplo para reproducibilidad.
+El repositorio incluye notebooks demostrativos, documentación técnica completa, y datos de ejemplo para reproducibilidad. Adicionalmente, un curso educativo basado en este proyecto está disponible en la comunidad Pesqueros en IA: \url{https://github.com/PesquerosEnIA/curso-dl-bayesiano-pesquerias}.
 
 % ----------------------------------------------------------------------------
 % REFERENCIAS
