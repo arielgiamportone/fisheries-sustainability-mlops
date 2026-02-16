@@ -62,6 +62,9 @@
 \newcommand{\species}[1]{\textit{#1}}
 \newcommand{\software}[1]{\texttt{#1}}
 
+% Ruta de imágenes
+\graphicspath{{images_assets/}}
+
 % ============================================================================
 % DOCUMENTO
 % ============================================================================
@@ -270,6 +273,13 @@ La arquitectura sigue un flujo de capas (Figura \ref{fig:arquitectura}):
     \item \textbf{Capa de implementación}: API REST (FastAPI)
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_arquitectura_sistema.png}
+\caption{Arquitectura del sistema híbrido neuro-bayesiano propuesto. El flujo integra capas de adquisición de datos (VMS, sensores, satélites), modelado (BNN y redes bayesianas estructurales), inferencia causal (do-calculus), análisis de escenarios y despliegue vía API REST. Las flechas indican el flujo de información entre componentes.}
+\label{fig:arquitectura}
+\end{figure}
+
 \begin{table}[H]
 \centering
 \caption{Stack tecnológico del proyecto DL\_Bayesian}
@@ -308,6 +318,20 @@ El módulo de análisis causal implementa do-calculus para responder preguntas c
 \begin{quote}
 \textit{``Si reduzco el esfuerzo pesquero en 20\%, ¿cómo cambia la probabilidad de sostenibilidad?''}
 \end{quote}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_dag_causal.png}
+\caption{Grafo acíclico dirigido (DAG) de la pesquería de centolla implementado en el sistema. Los nodos representan variables ambientales (temperatura, salinidad, clorofila), operativas (esfuerzo pesquero, CPUE, tamaño de flota) y económicas (costos, precios). Las aristas codifican relaciones causales hipotéticas derivadas de conocimiento experto del dominio. La variable objetivo (Sostenibilidad) integra las influencias de todas las capas.}
+\label{fig:dag_causal}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\textwidth]{fig_contrafactuales.png}
+\caption{Visualización de escenarios contrafactuales mediante do-calculus. El panel muestra cómo varía la distribución de probabilidad de sostenibilidad bajo diferentes intervenciones simuladas: reducción del esfuerzo pesquero, modificación de la captura total admisible (TAC) y restricciones temporales. Las distribuciones posterior permiten comparar escenarios de manejo antes de su implementación.}
+\label{fig:contrafactuales}
+\end{figure}
 
 Esta capacidad permite evaluar escenarios de manejo antes de implementarlos, simulando efectos de cambios en TAC, modificaciones a la talla mínima, o restricciones temporales adicionales.
 
@@ -427,6 +451,13 @@ El código fuente del proyecto está disponible como repositorio de código abie
 \end{center}
 
 El repositorio incluye notebooks demostrativos, documentación técnica completa, y datos de ejemplo para reproducibilidad. Adicionalmente, un curso educativo basado en este proyecto está disponible en la comunidad Pesqueros en IA: \url{https://github.com/PesquerosEnIA/curso-dl-bayesiano-pesquerias}.
+
+% ----------------------------------------------------------------------------
+% LISTA DE FIGURAS Y TABLAS
+% ----------------------------------------------------------------------------
+
+\listoffigures
+\listoftables
 
 % ----------------------------------------------------------------------------
 % REFERENCIAS
