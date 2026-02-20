@@ -106,7 +106,7 @@
 % ----------------------------------------------------------------------------
 
 \begin{abstract}
-La pesquería de centolla patagónica (\species{Lithodes santolla}) en Tierra del Fuego representa un caso de estudio ideal para la implementación de tecnologías de ciencia de datos en el manejo pesquero argentino. A pesar de contar con certificación MSC, una flota pequeña y controlable, y una sólida base de investigación biológica desarrollada por el CADIC e INIDEP, existe una brecha significativa entre las metodologías avanzadas de Deep Learning y Redes Bayesianas disponibles globalmente y su aplicación actual en la gestión de esta pesquería. Este artículo sintetiza el estado del arte en aplicaciones de inteligencia artificial para pesquerías, identifica gaps específicos para crustáceos, y propone un marco metodológico basado en Redes Neuronales Bayesianas (BNNs) como herramienta innovadora para la toma de decisiones bajo incertidumbre. Se presenta el proyecto \software{DL\_Bayesian} como prueba de concepto que integra redes bayesianas, análisis causal y deep learning en un sistema MLOps completo, demostrando la viabilidad técnica de estas aproximaciones para el contexto regional.
+La pesquería de centolla patagónica (\species{Lithodes santolla}) en Tierra del Fuego representa un caso de estudio ideal para la implementación de tecnologías de ciencia de datos en el manejo pesquero argentino. A pesar de contar con certificación MSC, una flota pequeña y controlable, y una sólida base de investigación biológica desarrollada por el CADIC e INIDEP, existe una brecha significativa entre las metodologías avanzadas de Deep Learning y Redes Bayesianas disponibles globalmente y su aplicación actual en la gestión de esta pesquería. Este artículo sintetiza el estado del arte en aplicaciones de inteligencia artificial para pesquerías, identifica gaps específicos para crustáceos, y propone un marco metodológico basado en Redes Neuronales Bayesianas (BNNs) como herramienta innovadora para la toma de decisiones bajo incertidumbre. Se presenta el proyecto \software{fisheries-sustainability-mlops} como prueba de concepto que integra redes bayesianas, análisis causal y deep learning en un sistema MLOps completo, demostrando la viabilidad técnica de estas aproximaciones para el contexto regional.
 
 \vspace{0.3cm}
 \noindent\textbf{Palabras clave:} \species{Lithodes santolla}, Deep Learning, Redes Bayesianas, Gestión Pesquera Sostenible, Tierra del Fuego, Inteligencia Artificial, MLOps, Redes Neuronales Bayesianas
@@ -249,9 +249,9 @@ La literatura sobre \species{L. santolla} identifica explícitamente gaps críti
 % 4. MARCO METODOLÓGICO
 % ----------------------------------------------------------------------------
 
-\section{Marco Metodológico Propuesto: Proyecto DL\_Bayesian}
+\section{Marco Metodológico Propuesto: Proyecto fisheries-sustainability-mlops}
 
-Como respuesta a los gaps identificados, se presenta el proyecto \software{DL\_Bayesian} como prueba de concepto para la aplicación de Deep Learning Bayesiano en pesquerías. El sistema integra tres componentes fundamentales: Redes Bayesianas para modelado causal, Redes Neuronales Bayesianas (BNN) para predicción con cuantificación de incertidumbre, y una arquitectura MLOps completa para despliegue en producción.
+Como respuesta a los gaps identificados, se presenta el proyecto \software{fisheries-sustainability-mlops} como prueba de concepto para la aplicación de Deep Learning Bayesiano en pesquerías. El sistema integra tres componentes fundamentales: Redes Bayesianas para modelado causal, Redes Neuronales Bayesianas (BNN) para predicción con cuantificación de incertidumbre, y una arquitectura MLOps completa para despliegue en producción.
 
 \subsection{Arquitectura del sistema}
 
@@ -337,7 +337,7 @@ Esta capacidad permite evaluar escenarios de manejo antes de implementarlos, sim
 
 \subsection{Limitaciones y naturaleza de los datos}
 
-Es fundamental explicitar que el proyecto \software{DL\_Bayesian}, en su estado actual, constituye una \textbf{prueba de concepto metodológica basada íntegramente en datos sintéticos} generados algorítmicamente. Las variables ambientales (temperatura superficial del mar, salinidad, clorofila-\textit{a}), operativas (esfuerzo pesquero, CPUE, tamaño de flota) y económicas (costos operativos, precios de mercado, márgenes) fueron simuladas mediante distribuciones estadísticas cuyos rangos y correlaciones se calibraron a partir de valores reportados en la literatura para pesquerías de crustáceos patagónicos \citep{Lovrich1999, Canales2020}.
+Es fundamental explicitar que el proyecto \software{fisheries-sustainability-mlops}, en su estado actual, constituye una \textbf{prueba de concepto metodológica basada íntegramente en datos sintéticos} generados algorítmicamente. Las variables ambientales (temperatura superficial del mar, salinidad, clorofila-\textit{a}), operativas (esfuerzo pesquero, CPUE, tamaño de flota) y económicas (costos operativos, precios de mercado, márgenes) fueron simuladas mediante distribuciones estadísticas cuyos rangos y correlaciones se calibraron a partir de valores reportados en la literatura para pesquerías de crustáceos patagónicos \citep{Lovrich1999, Canales2020}.
 
 Las relaciones causales modeladas en el sistema---incluyendo la estructura de los grafos acíclicos dirigidos (DAGs) y las distribuciones de probabilidad condicional---son \textbf{simuladas a partir de conocimiento experto del dominio} y no derivadas empíricamente de observaciones de campo. Si bien esta aproximación permite demostrar la viabilidad técnica de la arquitectura propuesta y validar el flujo completo del sistema (desde la ingesta de datos hasta la inferencia causal y el despliegue vía API), los resultados numéricos específicos no deben interpretarse como estimaciones reales del estado del stock o de la sostenibilidad de la pesquería.
 
@@ -368,7 +368,7 @@ BNN en pesquerías & \textbf{NO EXISTE} & \textbf{NO EXISTE} \\
 \end{tabular}
 \end{table}
 
-La última fila de la Tabla \ref{tab:brecha} destaca la oportunidad más significativa: las Bayesian Neural Networks no han sido aplicadas en pesquerías a nivel global. Esto posiciona al proyecto \software{DL\_Bayesian} como potencial contribución original a la literatura científica.
+La última fila de la Tabla \ref{tab:brecha} destaca la oportunidad más significativa: las Bayesian Neural Networks no han sido aplicadas en pesquerías a nivel global. Esto posiciona al proyecto \software{fisheries-sustainability-mlops} como potencial contribución original a la literatura científica.
 
 Las barreras identificadas para implementación incluyen:
 
@@ -389,7 +389,7 @@ Se propone una agenda de investigación estructurada en tres fases:
 
 \subsection*{Fase 1 (2026-2027): Validación y calibración}
 \begin{itemize}[noitemsep]
-    \item Adaptación del framework \software{DL\_Bayesian} a datos reales de centolla
+    \item Adaptación del framework \software{fisheries-sustainability-mlops} a datos reales de centolla
     \item Integración con series históricas INIDEP y campañas CADIC
     \item Validación cruzada contra evaluación de stock tradicional
 \end{itemize}
@@ -424,7 +424,7 @@ La pesquería de centolla patagónica presenta características únicas que la p
     \item Cobertura de observadores del 85\%
 \end{itemize}
 
-Las metodologías revisadas---CNN para clasificación automatizada, LSTM para predicción temporal, BRT para distribución espacial, y modelos bayesianos para evaluación de stocks---están suficientemente maduras para transferencia tecnológica. La ausencia de BNNs en la literatura pesquera representa una oportunidad para contribución científica original que el proyecto \software{DL\_Bayesian} está posicionado para capitalizar.
+Las metodologías revisadas---CNN para clasificación automatizada, LSTM para predicción temporal, BRT para distribución espacial, y modelos bayesianos para evaluación de stocks---están suficientemente maduras para transferencia tecnológica. La ausencia de BNNs en la literatura pesquera representa una oportunidad para contribución científica original que el proyecto \software{fisheries-sustainability-mlops} está posicionado para capitalizar.
 
 La implementación requerirá colaboración institucional entre CADIC (expertise biológico), INIDEP (datos pesqueros), universidades con capacidad en ciencia de datos (UTN), y potencialmente socios internacionales como AZTI (España) o programas FAO.
 

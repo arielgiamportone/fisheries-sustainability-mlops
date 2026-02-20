@@ -2,6 +2,7 @@
 
 import os
 import time
+from pathlib import Path
 from typing import Dict, Any, Optional, Tuple, List
 from threading import Lock
 
@@ -11,6 +12,11 @@ import torch.nn as nn
 from sklearn.preprocessing import StandardScaler
 
 from src.mlops.mlflow_tracking import MLFlowTracker
+
+# Local model paths (fallback when MLflow is not available)
+_PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
+LOCAL_MODEL_PATH = _PROJECT_ROOT / "outputs" / "models" / "sustainability_bnn_api.pt"
+LOCAL_SCALER_PATH = _PROJECT_ROOT / "outputs" / "models" / "scaler_params.npz"
 
 
 class ModelService:
@@ -72,25 +78,50 @@ class ModelService:
                 tracking_uri=self.tracking_uri,
                 experiment_name="api_inference"
             )
-            self._initialized = True
-
-            # Try to load production model
-            await self._preload_production_model()
         except Exception as e:
             print(f"Warning: Could not initialize MLFlow connection: {e}")
-            self._initialized = True  # Mark as initialized anyway
+            self._tracker = None
+
+        self._initialized = True
+
+        # Try to load production model (MLflow or local fallback)
+        await self._preload_production_model()
 
     async def _preload_production_model(self):
-        """Preload the production model into cache."""
+        """Preload the production model into cache (MLflow or local fallback)."""
+        model = None
+
+        # Try MLflow first
         try:
-            model = self._tracker.get_production_model(self.default_model_name)
-            if model is not None:
-                cache_key = (self.default_model_name, "Production")
-                with self._cache_lock:
-                    self._model_cache[cache_key] = (model, None, time.time())
-                print(f"Preloaded production model: {self.default_model_name}")
+            if self._tracker is not None:
+                model = self._tracker.get_production_model(self.default_model_name)
+                if model is not None:
+                    print(f"Preloaded production model from MLflow: {self.default_model_name}")
         except Exception as e:
-            print(f"Could not preload production model: {e}")
+            print(f"Could not load from MLflow: {e}")
+
+        # Fallback: load from local .pt file
+        if model is None and LOCAL_MODEL_PATH.exists():
+            try:
+                from src.deep_learning.models import create_model
+                checkpoint = torch.load(LOCAL_MODEL_PATH, map_location='cpu', weights_only=False)
+                model = create_model(
+                    checkpoint.get('model_type', 'bnn'),
+                    input_dim=checkpoint.get('input_dim', 10),
+                    hidden_dims=checkpoint.get('hidden_dims', [64, 32])
+                )
+                model.load_state_dict(checkpoint['model_state_dict'])
+                model.eval()
+                print(f"Preloaded model from local file: {LOCAL_MODEL_PATH}")
+            except Exception as e:
+                print(f"Could not load local model: {e}")
+
+        if model is not None:
+            cache_key = (self.default_model_name, "Production")
+            with self._cache_lock:
+                self._model_cache[cache_key] = (model, None, time.time())
+        else:
+            print("WARNING: No model available. Train one with: python scripts/train_local_model.py")
 
     def _get_model(
         self,

@@ -116,6 +116,45 @@ nul
 # Jupyter
 .ipynb_checkpoints/
 
+# ============================================
+# LOCAL-ONLY FILES (not for GitHub)
+# ============================================
+
+# Project management & internal docs
+AGENTS.md
+PLAN_MEJORA.md
+INSTALL_FIX.md
+INSTALL_STATUS.md
+SOLUCION_RUTA_LARGA.md
+
+# Social media & marketing content
+outputs/social/
+
+# Video production
+outputs/video/
+
+# Temporary test scripts (root-level)
+test_import.py
+test_installation.py
+
+# Temp training outputs & logs
+outputs/*.txt
+outputs/*.log
+scripts/run_training.bat
+scripts/register_model_mlflow.py
+scripts/train_local_model.py
+
+# Stray generated files in root
+causal_model.png
+
+# MLflow artifacts
+mlruns/
+mlartifacts/
+
+# ============================================
+# END LOCAL-ONLY
+# ============================================
+
 # PyTorch
 *.pth
 *.onnx
@@ -126,6 +165,22 @@ tensorboard/
 
 # MLflow
 mlruns/
+mlartifacts/
+
+# LaTeX auxiliary files
+*.aux
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# Compiled PDFs (source .tex is tracked, compile locally)
+bibliography/*.pdf
 
 # Weights & Biases
 wandb/
