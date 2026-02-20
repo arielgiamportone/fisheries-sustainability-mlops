@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logos/logo-full.svg" alt="Ariel Luján Giamportone — Data Science & AI | Fisheries Engineer" width="420"/>
+</p>
+
 # 📊 Fisheries Sustainability MLOps
 
 > Deep Learning y Redes Bayesianas para Sostenibilidad Pesquera — Sistema MLOps End-to-End
@@ -535,6 +539,8 @@ Este proyecto está bajo licencia MIT. Ver [LICENSE](LICENSE) para más detalles
 ---
 
 ## 👤 Autor
+
+<img src="assets/logos/logo-full.svg" alt="Ariel Luján Giamportone" width="320"/>
 
 **Ing. Ariel Luján Giamportone**
 
